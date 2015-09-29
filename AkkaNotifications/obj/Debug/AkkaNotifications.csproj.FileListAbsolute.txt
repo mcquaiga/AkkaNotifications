@@ -12,6 +12,5 @@ C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack
 C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Text.dll
 C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Client.dll
 C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Client.xml
-C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\obj\Debug\AkkaNotifications.csprojResolveAssemblyReference.cache
 C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\Newtonsoft.Json.dll
 C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\Newtonsoft.Json.xml
