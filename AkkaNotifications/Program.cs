@@ -9,22 +9,26 @@ namespace AkkaNotifications
     {
         const string ChannelName = "Funky";
         const string MessagePrefix = "MESSAGE ";
+        const int NumberOfEvents = 100;
         private static ActorSystem MyActorSystem;
-
+        
         static void Main(string[] args)
         {
             IRedisSubscription sub;
             MyActorSystem = ActorSystem.Create("MyActorSystem");
-
             var redisPool = new BasicRedisClientManager("127.0.0.1:6379");
             var redisConsumer = redisPool.GetClient();
-            
+            var numberOfEventsHeard = 0;
             using (sub = redisConsumer.CreateSubscription())
             { 
                 sub.OnMessage = (channel, msg) =>
                 {
                     //tell an actor that somethings come in
                     var redisSubActor = MyActorSystem.ActorOf(Props.Create(() => new MyCoordinator(new Messages { Channel = channel, Message = msg })));
+                    numberOfEventsHeard++;
+                    if (numberOfEventsHeard >= NumberOfEvents)
+                        sub.UnSubscribeFromAllChannels();                      
+
                 };
                 redisConsumer.PublishMessage(ChannelName, "Hello Adam");
 
@@ -37,7 +41,7 @@ namespace AkkaNotifications
 
                 using (var redisPublisher = redisPool.GetClient())
                 {
-                    for (var i = 1; i <= 1000; i++)
+                    for (var i = 1; i <= NumberOfEvents; i++)
                     {
                         var message = MessagePrefix + i;
                         Console.WriteLine(String.Format("Publishing '{0}' to '{1}'", message, ChannelName));
@@ -104,14 +108,15 @@ namespace AkkaNotifications
         {
             Receive<Messages>(message =>
             {
-                ProcessMessage(string.Format("Received '{0}' from channel '{1}'", message.Message, message.Channel));
+                ProcessMessage(message.Message, message.Channel);
             });
         }
 
-        private void ProcessMessage(string message)
+        private void ProcessMessage(string message, string channel)
         {
-            Thread.Sleep(100);
-            Console.WriteLine(message);
+            Console.WriteLine("Starting work on {0} at channel {1}", message, channel);
+            Thread.Sleep(1000);
+            Console.WriteLine("Finished work on {0} at channel {1}", message, channel);
         }
     }
 }
