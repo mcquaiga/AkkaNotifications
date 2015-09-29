@@ -9,7 +9,7 @@ namespace AkkaNotifications
     {
         const string ChannelName = "Funky";
         const string MessagePrefix = "MESSAGE ";
-        const int NumberOfEvents = 100;
+        const int NumberOfEvents = 10;
         private static ActorSystem MyActorSystem;
         
         static void Main(string[] args)
@@ -79,6 +79,7 @@ namespace AkkaNotifications
         public MyCoordinator(Messages message)
         {
             _message = message;
+            Console.WriteLine("Queuing {0}", message.Message);
             Receive<MessageComplete>(myMessage =>
             {
                 ProcessCompletedMessage(myMessage.TimeTaken);
