@@ -2,6 +2,7 @@
 using Akka.Actor;
 using System;
 using System.Threading;
+using System.Diagnostics;
 
 namespace AkkaNotifications
 {
@@ -63,12 +64,12 @@ namespace AkkaNotifications
 
     public class MessageComplete
     {
-        public MessageComplete(int timeTaken)
+        public MessageComplete(TimeSpan timeTaken)
         {
             TimeTaken = timeTaken;
         }
 
-        public int TimeTaken { get; set; }
+        public TimeSpan TimeTaken { get; set; }
     }
 
     public class MyCoordinator : ReceiveActor
@@ -82,7 +83,7 @@ namespace AkkaNotifications
             Console.WriteLine("Queuing {0}", message.Message);
             Receive<MessageComplete>(myMessage =>
             {
-                ProcessCompletedMessage(myMessage.TimeTaken);
+                ProcessCompletedMessage(myMessage);
             });
         }
         
@@ -92,21 +93,19 @@ namespace AkkaNotifications
             _childMessageActor.Tell(new Messages { Channel = _message.Channel, Message = _message.Message });
         }
 
-        private void ProcessCompletedMessage(int time)
+        private void ProcessCompletedMessage(MessageComplete time)
         {
-            Console.WriteLine(time);
+            Console.WriteLine("Finished work on {0} at channel {1} in {2} ms", _message.Message, _message.Channel, time.TimeTaken.TotalMilliseconds);
         }
     }
 
     public class MyChildActor : ReceiveActor
     {
+        private Stopwatch _totalTime;
+
         public MyChildActor()
         {
-            Initialize();
-        }
-
-        public void Initialize()
-        {
+            _totalTime = Stopwatch.StartNew();
             Receive<Messages>(message =>
             {
                 ProcessMessage(message.Message, message.Channel);
@@ -116,8 +115,9 @@ namespace AkkaNotifications
         private void ProcessMessage(string message, string channel)
         {
             Console.WriteLine("Starting work on {0} at channel {1}", message, channel);
-            Thread.Sleep(1000);
-            Console.WriteLine("Finished work on {0} at channel {1}", message, channel);
+            Thread.Sleep(5000);
+            _totalTime.Stop();
+            Context.Parent.Tell(new MessageComplete(_totalTime.Elapsed));
         }
     }
 }
