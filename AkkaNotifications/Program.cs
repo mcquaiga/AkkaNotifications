@@ -20,6 +20,7 @@ namespace AkkaNotifications
             var redisPool = new BasicRedisClientManager("127.0.0.1:6379");
             var redisConsumer = redisPool.GetClient();
             var numberOfEventsHeard = 0;
+
             using (sub = redisConsumer.CreateSubscription())
             { 
                 sub.OnMessage = (channel, msg) =>
@@ -37,7 +38,6 @@ namespace AkkaNotifications
 
             ThreadPool.QueueUserWorkItem(x =>
             {
-                Thread.Sleep(200);
                 Console.WriteLine("Begin publishing messages...");
 
                 using (var redisPublisher = redisPool.GetClient())
@@ -95,6 +95,7 @@ namespace AkkaNotifications
 
         private void ProcessCompletedMessage(MessageComplete time)
         {
+            _childMessageActor = null;
             Console.WriteLine("Finished work on {0} at channel {1} in {2} ms", _message.Message, _message.Channel, time.TimeTaken.TotalMilliseconds);
         }
     }
