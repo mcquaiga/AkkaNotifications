@@ -1,0 +1,17 @@
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\AkkaNotifications.exe.config
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\AkkaNotifications.exe
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\AkkaNotifications.pdb
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\Akka.dll
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Interfaces.dll
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Redis.dll
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\Akka.xml
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Redis.xml
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\obj\Debug\AkkaNotifications.exe
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\obj\Debug\AkkaNotifications.pdb
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Common.dll
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Text.dll
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Client.dll
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\ServiceStack.Client.xml
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\obj\Debug\AkkaNotifications.csprojResolveAssemblyReference.cache
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\Newtonsoft.Json.dll
+C:\Users\amcquaig\dev\AkkaNotifications\AkkaNotifications\bin\Debug\Newtonsoft.Json.xml
