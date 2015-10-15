@@ -11,8 +11,8 @@ From a terminal, to enter the redis command line interface
 redis-cli
 ```
 
-Now you can publish messages from the terminal that our program will act on,
+Now you can publish messages from the terminal that our program can receive,
 
 ```
-publish funky "Hello, World" (publish channel message)
+publish channel message - for example, publish akka "Hello, World" 
 ```
